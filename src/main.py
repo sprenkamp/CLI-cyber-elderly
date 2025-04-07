@@ -13,9 +13,16 @@ from rich.prompt import Prompt
 import colorama
 from dotenv import load_dotenv
 
-from src.models import ModelManager
-from src.prompts import SYSTEM_PROMPT
-from src.utils import format_response
+# Try to import from src package first, then fall back to relative imports
+try:
+    from src.models import ModelManager
+    from src.prompts import SYSTEM_PROMPT
+    from src.utils import format_response
+except ImportError:
+    # If running directly from src directory
+    from models import ModelManager
+    from prompts import SYSTEM_PROMPT
+    from utils import format_response
 
 # Initialize colorama for cross-platform colored terminal output
 colorama.init()
